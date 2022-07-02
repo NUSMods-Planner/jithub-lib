@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,12 @@
   "homepage": "https://github.com/NUSMods-Planner/jithub-lib#readme",
   "description": "",
   "devDependencies": {
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
     "typescript": "^4.7.4"
+  },
+  "lint-staged": {
+    "*.{json,md,ts,yaml}": "prettier --write"
   }
 }
