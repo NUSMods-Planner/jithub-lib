@@ -1,0 +1,49 @@
+# General syntax
+# [rule]
+# action = ["param"]
+
+# [rule1]
+# match = ["mod1", "mod2"]
+
+# [rule3]
+# satisfy_all = [rule1, rule2]
+# OR
+# satisfy_oneof = [rule1, rule2]
+
+# each rule can have either/both of "match" and ("satisfy_all" or "satisfy_or")
+# How to interpret <=: interpret as max. number of MCs you can take (cannot do more than 60MCs of 1k) (CURRENT APPROACH, but to align with the admin staff's thinking later), or max. number of MCs that will be recognised in the rule (61MCs of 1k modules will be recongnised as 60MCs))
+
+# each file represents a single section of the requirements, e.g. GE requirements, CS major requirements, UEs
+# user will designate specifically where the modules belong to, which will pave the way for dealing with special programme waivers and double counting
+
+# ---------------------------------------------
+
+title = "Computer Science 20/21"
+base_rule = ["bd"]
+
+[bd]
+satisfy_all = [
+    { mc = ">= 28" },
+    { satisfy_oneof = [
+        "bd.fa.algorithms",
+        "bd.fa.ai",
+    ] },
+]
+
+[bd.fa.4k_rule]
+match = ["*4xxx*"]
+satisfy_all = [{ mc = ">= 4" }]
+
+[bd.fa.algorithms]
+match = ["CS3230", "CS4234", "CS4231"]
+satisfy_all = [
+        { mc = ">= 12"},
+        "bd.fa.4k_rule"
+]
+
+[bd.fa.ai]
+match = ["CS3243", "CS3244", "CS4243"]
+satisfy_all = [
+        { mc = ">= 12"},
+        "bd.fa.4k_rule"
+]
